@@ -1,0 +1,51 @@
+package hr.josip.questions;
+
+import java.util.*;
+
+public class Questions {
+
+	int guess;
+
+	int j = 0;
+	String questions[] = new String[19];
+	String question;
+	static ArrayList<Integer> list = new ArrayList<Integer>();
+
+	public Questions() {
+
+		questions[1] = "�to je Terej u�inio sestri svoje �ene?$A. Odrubio glavu$B. Protjerao iz dvorca$C. Odrezao jezik$D. Pomogao u nevolji$3";
+		questions[2] = "Koliko dje�aka i djevojaka su �rtvovani minotauru?$A. Deset$B. Dvanaest$C. Sedam$D. �etrnaest$4";
+		questions[3] = "Zbog �ega je Dedal protjeran iz svoje domovine?$A. Ubojstva ne�aka$B. Kra�e$C. Izdaje kralja$D. Zbog svojih izuma$1";
+		questions[4] = "Po �emu su Mirmidonci dobili ime?$A. Mravima$B. Drve�u$C. Brdu$D. Vladaru$1";
+		questions[5] = "Tko je Orfeju darovao liru?$A. Hera$B. Zeus$C. Ares$D. Apolon$4";
+		questions[6] = "Tko je bio Tezejev otac?$A. Egej$B. Pitej$C. Perifeg$D. Obelix $1";
+		questions[7] = "Kako se zvala �ena zbog koje je izbio Amazonski rat?$A. Lapita$B. Hipolita$C. Ksena$D. Mikadona$2";
+		questions[8] = "Kako je Tezej umro?$A. Ba�en je sa stijene$B. Otrovan je$C. Umro je od starosti$D. Proboden je no�em$1";
+		questions[9] = "�to zna�i ime edip?$A. Veliki vo�a$B. Hrabri borac$C. Oteklih nogu$D. Velikog srca$3";
+		question = questions[rng(1, 10)];
+
+	}
+
+	public int rng(int min, int max) {
+
+		guess = (int) ((max - min) * Math.random() + min);
+
+		if (list.contains(guess)) {
+			rng(1, 10);
+		}
+
+		else {
+			addToList(guess);
+		}
+
+		return guess;
+
+	}
+
+	public void addToList(int g) {
+
+		list.add(g);
+
+	}
+
+}

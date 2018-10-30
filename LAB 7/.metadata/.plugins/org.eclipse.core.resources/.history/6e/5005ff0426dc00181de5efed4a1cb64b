@@ -1,0 +1,165 @@
+package hr.josip.main;
+
+import hr.josip.questions.QuestionChange;
+
+import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+
+import javax.swing.*;
+
+public class Main extends JFrame implements ActionListener {
+
+	Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+	JLabel question2;
+	JButton ant[] = new JButton[10];
+	JFrame w1;
+
+	int highscore = 0;
+	Object[] options = { "OK" };
+	JProgressBar b;
+	public int solution;
+	int answer = 0;
+
+	public Main() {
+
+		w1 = new JFrame();
+		w1.setSize(600, 400);
+		w1.setLocation((int) (dim.getWidth() - 400) / 2,
+				(int) (dim.getHeight() - 300) / 2);
+
+		w1.setVisible(true);
+
+		w1.setLayout(null);
+		w1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		w1.setLocationRelativeTo(null);
+		w1.setTitle("Kviz za Božu :) !!!");
+		w1.setBackground(Color.BLACK);
+
+		ant[0] = new JButton("-");
+		ant[0].setBounds(52, 110, 200, 40);
+		ant[0].addActionListener(this);
+		w1.add(ant[0]);
+
+		ant[1] = new JButton("-");
+		ant[1].setBounds(52, 180, 200, 40);
+		ant[1].addActionListener(this);
+		w1.add(ant[1]);
+
+		ant[2] = new JButton("-");
+		ant[2].setBounds(320, 110, 200, 40);
+		ant[2].addActionListener(this);
+		w1.add(ant[2]);
+
+		ant[3] = new JButton("-");
+		ant[3].setBounds(320, 180, 200, 40);
+		ant[3].addActionListener(this);
+		w1.add(ant[3]);
+
+		question2 = new JLabel("Ovdje su pitanja");
+		question2.setBounds(52, 25, 400, 40);
+		w1.add(question2);
+
+		b = new JProgressBar(0, 100);
+		b.setBounds(115, 300, 350, 25);
+		b.setValue(0);
+		b.setStringPainted(true);
+		w1.add(b);
+
+	}
+
+	public void percentages(int num, int total) {
+		b.setValue((int) 100 / total * num);
+	}
+
+	public void actionPerformed(ActionEvent e) {
+
+		if (e.getSource() == ant[0]) {
+
+			if (solution == 1) {
+				// message("Toèno","Samo naprijed...");
+				percent();
+				QuestionChange.newQuestion();
+				highscore += 5;
+			}
+
+			else {
+				// message("Krivo","Žao mi je...");
+				percent();
+				QuestionChange.newQuestion();
+			}
+		}
+
+		if (e.getSource() == ant[1]) {
+			if (solution == 2) {
+				// message("Toèno","Samo naprijed...");
+				percent();
+				QuestionChange.newQuestion();
+				highscore += 5;
+			} else {
+				// message("Krivo","Žao mi je...");
+				percent();
+				QuestionChange.newQuestion();
+			}
+		}
+
+		if (e.getSource() == ant[2]) {
+			if (solution == 3) {
+				// message("Toèno","Samo naprijed...");
+				percent();
+				QuestionChange.newQuestion();
+				highscore += 5;
+			} else {
+				// message("Krivo","Žao mi je...");
+				percent();
+				QuestionChange.newQuestion();
+			}
+		}
+
+		if (e.getSource() == ant[3]) {
+			if (solution == 4) {
+				// message("Toèno","Samo naprijed...");
+				percent();
+				QuestionChange.newQuestion();
+				highscore += 5;
+			} else {
+				// message("Krivo","Žao mi je...");
+				percent();
+				QuestionChange.newQuestion();
+			}
+		}
+	}
+
+	public void changeButtonText(int button, String text) {
+		ant[button - 1].setText(text);
+	}
+
+	public void changeLabelText(String text) {
+		question2.setText(text);
+	}
+
+	public void message(String statement, String info) {
+
+		JOptionPane.showOptionDialog(null, statement, info,
+				JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null,
+				options, options[0]);
+	}
+
+	public void percent() {
+		if (answer <= 7) {
+			answer += 1;
+			percentages(answer, 8);
+		} else {
+			answer += 1;
+			percentages(answer, 8);
+			message("Bravo osvojili ste " + highscore + " bodova", "");
+			System.exit(0);
+		}
+	}
+
+	public static void main(String[] args) {
+		new QuestionChange();
+	}
+
+}
